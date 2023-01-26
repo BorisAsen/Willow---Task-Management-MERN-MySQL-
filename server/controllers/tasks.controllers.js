@@ -3,7 +3,7 @@
 // Importar la conexion a la db
 import { pool } from "../db.js"
 
-// Funcion para crear una tarea
+// * Funcion para crear una tarea
 export const createTask = async (req, res) => {
     try {
         //res.send('Creando tareas');
@@ -26,7 +26,7 @@ export const createTask = async (req, res) => {
     
 }
 
-// Funcion para obtener todas las tareas de la db
+// * Funcion para obtener todas las tareas de la db
 export const getTasks = async (req, res) => {
     try {
         //res.send('Obteniendo tareas')
@@ -41,7 +41,7 @@ export const getTasks = async (req, res) => {
     
 }
 
-// Funcion para obtener una tarea mediante su id
+// * Funcion para obtener una tarea mediante su id
 export const getTask = async (req, res) => {
     try {
         //res.send('Obteniendo una tarea')
@@ -63,19 +63,26 @@ export const getTask = async (req, res) => {
 
 // Funcion para eliminar una tarea mediante su id
 export const deleteTask = async (req, res) => {
-    //res.send('Eliminando una tarea')
-    /* 
-       Aca, si bien no es necesario devolver un resultado luego de eliminar una tarea,
-       Se utilizara el result.affectedRows para saber si la tarea que se desea eliminar
-       realmente existe en la db, en el caso de no hacerlo se devolvera un msg de error
-    */
-    const [result] = await pool.query("DELETE FROM tasks WHERE id = ?", [req.params.id]);
-    if (result.affectedRows === 0) {
-        return res.status(404).json({message: "Task not found"});
-    };
-    // En el caso de si haber existido la tarea, el estado sera 204 indicando que se
-    // elimino correctamente pero no devuelve ningun resultado
-    return res.sendStatus(204);
+    try {
+        //res.send('Eliminando una tarea')
+        /* 
+        Aca, si bien no es necesario devolver un resultado luego de eliminar una tarea,
+        Se utilizara el result.affectedRows para saber si la tarea que se desea eliminar
+        realmente existe en la db, en el caso de no hacerlo se devolvera un msg de error
+        */
+        const [result] = await pool.query("DELETE FROM tasks WHERE id = ?", [req.params.id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({message: "Task not found"});
+        };
+        // En el caso de si haber existido la tarea, el estado sera 204 indicando que se
+        // elimino correctamente pero no devuelve ningun resultado
+        return res.sendStatus(204);
+    } catch (error) {
+        // Retornar el mensaje de error como respuesta
+        return res.status(500).json({message: error.message});
+    }
+
+
 }
 
 // Funcion para modificar una tarea mediante su id
