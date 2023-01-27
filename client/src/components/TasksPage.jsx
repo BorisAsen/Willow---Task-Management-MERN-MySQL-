@@ -29,17 +29,24 @@ export default function TasksPage() {
       setTasks(response.data);
     }
     loadTasks();
-  }, [])
+  }, []);
+
+  // Funcion que renderiza el contenido de la pagina principal
+  // Muestra el arreglo de tareas, si esta vacio muestra la leyenda correspondiente
+  function renderMain() {
+    if (tasks.length === 0) {
+      return <h1>No hay tareas que mostrar</h1>
+    }else{
+      return tasks.map ((task) => <TaskCard task={task} key={task.id}/>)
+    }
+  }
 
   return (
     <div>
       <h1>Lista de Tareas</h1>
 
-      {/* Porcion de codigo que muestra el arreglo de tareas obtenido al cargar la pagina */}
-      {tasks.map( task => (
-        <TaskCard task={task} key={task.id}/>
-      ))
-      }
+      {/* Se llama a la funcion que renderiza el contenido de la pagina */}
+      {renderMain()}
     </div>
   )
 }
