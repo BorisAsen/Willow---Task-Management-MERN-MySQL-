@@ -6,14 +6,14 @@ import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
     <div>
-        <h1>React MySQL</h1>
+        <h1>Programa de Gestion Willow</h1>
 
         <ul>
             <li>
-                <Link to="/">Home</Link>
+                <Link to="/">Inicio</Link>
             </li>
             <li>
-                <Link to="/new">Create Task</Link>
+                <Link to="/new">Create Tareas</Link>
             </li>
         </ul>
     </div>

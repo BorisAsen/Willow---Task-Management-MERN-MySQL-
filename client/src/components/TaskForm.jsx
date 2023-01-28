@@ -1,10 +1,16 @@
 import React from 'react'
 // Importar el componente de Formik para crear y manejar el formulario de alta de tareas
 import { Form, Formik } from "formik";
-// Importar la funcion de axios para enviar la tarea al backend
-import { createTaskRequest } from "../api/tasks.api";
+
+// Importar el context de tareas
+import { useTasks } from "../context/TasksProvider";
+
 
 export default function TaskForm() {
+
+  // Extraigo del context la funcion para crear tareas
+  const {createTask} = useTasks();
+
   return (
     <div>
       <Formik
@@ -16,15 +22,12 @@ export default function TaskForm() {
         // Evento que se activa cuando el formuilario es enviado
         // Con esto se pueden observar por consola los datos que se capturaron
         onSubmit={async (values, actions) => {
+          // Muestro los valores por consola
           console.log(values);
-          try {
-            const response = await createTaskRequest(values);
-            console.log(response);
-            // Reseteo el formulario a sus valores inicales cuando se envia correctamente
-            actions.resetForm();
-          } catch (error) {
-            console.log(error);
-          }
+          // Llamo a la funcion para crear una tarea
+          createTask(values);
+          // Reseteo el formulario a sus valores inicales
+          actions.resetForm();
         }}
         >
         {/* Esta funcion permite que los datos capturados por los inputs se correspondan
