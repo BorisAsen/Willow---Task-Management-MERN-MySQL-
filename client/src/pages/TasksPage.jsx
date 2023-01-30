@@ -4,7 +4,7 @@ import React from 'react'
 import { useEffect } from "react";
 
 // Importar el componente para mostrar una tarjeta de tarea
-import TaskCard from "./TaskCard";
+import TaskCard from "../components/TaskCard";
 
 // Importo el context de tareas
 import { useTasks } from "../context/TasksProvider";
