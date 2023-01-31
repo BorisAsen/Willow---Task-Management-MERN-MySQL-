@@ -6,7 +6,13 @@ import { TaskContext } from "./TasksContext";
 import { useContext, useState } from "react";
 
 // Importo desde la API las funciones necesarias para manipular las tareas
-import { getTasksRequest, deleteTaskRequest, createTaskRequest } from "../api/tasks.api";
+import { 
+    getTasksRequest,
+    getTaskRequest,
+    deleteTaskRequest,
+    createTaskRequest,
+    updateTaskRequest
+} from "../api/tasks.api";
 
 
 
@@ -71,11 +77,34 @@ export const TaskContextProvider = ({children}) => {
         }
     };
 
+    // Funcion para traer una unica tarea mediante un id
+    const getTask = async (id) => {
+        try {
+            const response = await getTaskRequest(id);
+            return response.data;
+        } catch (error) {
+            console.log(error);   
+        }
+    };
+
+    // Funcion para modificar una tarea mediante el id que recibe
+    // del evento onClick del boton Guardar
+    const updateTask = async (id, newFields) => {
+        try {
+            const response = await updateTaskRequest(id, newFields);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (<TaskContext.Provider value={{
                 tasks,
                 loadTasks,
                 deleteTask,
-                createTask
+                createTask,
+                getTask,
+                updateTask
             }}>
                 {children}
             </TaskContext.Provider>

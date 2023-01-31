@@ -22,6 +22,8 @@ export default function App() {
           <Route path='/' element={<TasksPage/>} />
           {/* Ruta de la pagina para crear tareas */}
           <Route path='/new' element={<TaskForm/>} />
+          {/* Ruta de la pagina para modificar tareas */}
+          <Route path='/edit/:id' element={<TaskForm/>} />
           {/* Pagina por defecto que se mostrara cuando se solicite una pagina que no existe */}
           <Route path='*' element={<NotFound/>} />
         </Routes>

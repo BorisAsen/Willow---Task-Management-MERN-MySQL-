@@ -6,28 +6,95 @@ import { Form, Formik } from "formik";
 import { useTasks } from "../context/TasksProvider";
 
 
+// cuando se envia el id de una tarea para editarla
+
+
+// Importar los hooks necesarios
+// useEffect para obtener los datos de la tarea a editar al cargar la pagina
+// useState para setear los campos del form con los datos de la tarea a modificar
+// useParams para extraer los parametros dinamicos de la ruta
+// useNavigate para redireccionar a la pagina principal con el listado de tareas una vez creada o modificada la tarea
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+
+
 export default function TaskForm() {
 
-  // Extraigo del context la funcion para crear tareas
-  const {createTask} = useTasks();
+  // Extraigo del context las funciones necesarias
+  const {
+    createTask, // Fn de crear tareas
+    getTask, // Fn para obtener una tarea mediante el id
+    updateTask // Fn para modificar una tarea mediante su id y los nuevos valores
+  } = useTasks();
+
+  // Definir el useState para setear valores en el formulario
+  const [task, setTask] = useState({
+    title: "",
+    decription: "",
+  });
+
+  // Creo la constante para disponer del useParams
+  const params = useParams();
+  console.log(params); // Mustro el id de la tarea en consola
+
+  // Creo la constante para disponer del useNavigate
+  const navigate = useNavigate();
+
+  // Utilizar el useEfect para traer los datos de la tarea en el caso de
+  // que ya exista y se la quiera editar
+  useEffect(() => {
+    // Es necesario colocar el llamado a getTask con el await dentro de otra
+    // funcion sino arroja un error
+    const loadTask = async () => {
+      if (params.id) {
+        const task = await getTask(params.id);
+        // Muestro por consola los datos de la tarea para corroborar
+        // console.log(task);
+        setTask({
+          title: task.title,
+          description: task.description,
+        }) 
+      }
+    };
+    loadTask();
+  }, [])
+  
+
 
   return (
     <div>
+      {/* Crear un titulo condicional para el formulario segun se quiera crear
+      o actualizar una tarea. Si ya existe el id de la tarea el titulo sera Editar
+      de caso contrario sera Crear. */}
+      <h1>{ params.id ? "Editar Tarea" : "Crear Tarea" }</h1>
+
       <Formik
         // Defino los valores iniciales que tendran los campos
-        initialValues={{
-          title: "",
-          description: "",
-        }}
+        // Si se quiere editar una tarea se corresponderan con los
+        // valores obtenidos de la db, sino estaran vacios al momento de crear una nueva
+        initialValues={task}
+        enableReinitialize={true}
+
         // Evento que se activa cuando el formuilario es enviado
         // Con esto se pueden observar por consola los datos que se capturaron
         onSubmit={async (values, actions) => {
           // Muestro los valores por consola
           console.log(values);
-          // Llamo a la funcion para crear una tarea
-          createTask(values);
-          // Reseteo el formulario a sus valores inicales
-          actions.resetForm();
+          // Corroboro si la tarea ya existe para modificarla o crearla segun corresponda
+          if (params.id) {
+            // Llamo a la funcion para modificar una tarea
+            await updateTask(params.id, values)
+            // Redireccionar a la pagina principal una vez actualizada la tarea
+            navigate("/");
+          } else {
+            // Llamo a la funcion para crear una tarea
+            await createTask(values);
+          }
+          // Limpio el formulario una vez que se crea o modifica una tarea
+          setTask({
+            title: "",
+            description: "",
+          });
         }}
         >
         {/* Esta funcion permite que los datos capturados por los inputs se correspondan
