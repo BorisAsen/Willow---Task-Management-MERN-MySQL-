@@ -32,7 +32,8 @@ export const getTasks = async (req, res) => {
         //res.send('Obteniendo tareas')
         const [result] = await pool.query("SELECT * FROM tasks ORDER BY createAt ASC");
         // Devuelve un arreglo con todas las tareas
-        console.log(result);
+        //console.log(result);
+        console.log("Obteniendo tareas...")
         res.json(result); 
     } catch (error) {
         // Retornar el mensaje de error como respuesta

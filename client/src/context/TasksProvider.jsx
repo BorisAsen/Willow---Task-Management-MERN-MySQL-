@@ -11,7 +11,8 @@ import {
     getTaskRequest,
     deleteTaskRequest,
     createTaskRequest,
-    updateTaskRequest
+    updateTaskRequest,
+    toggleTaskDoneRequest
 } from "../api/tasks.api";
 
 
@@ -98,13 +99,31 @@ export const TaskContextProvider = ({children}) => {
         }
     };
 
+    // Funcion para cambiar el estado de una tarea (done) 
+    const toggleTaskDone = async (id) => {
+        try {
+            // Encontrar y obtener la tarea a modificar dentro del arreglo de tareas
+            const taskFound = tasks.find((task) => task.id === id);
+            // Llamar a la funcion para cambiar el estado de la tarea obtenida
+            const response = await toggleTaskDoneRequest(id, taskFound.done === 0 ? true : false);
+            console.log(response);
+            // Actualizar la tarea modificada para ver el resultado automaticamente en la pantalla
+            setTasks(
+                tasks.map((task) => task.id === id ? { ... task, done: !task.done } : task )
+            )
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (<TaskContext.Provider value={{
                 tasks,
                 loadTasks,
                 deleteTask,
                 createTask,
                 getTask,
-                updateTask
+                updateTask,
+                toggleTaskDone
             }}>
                 {children}
             </TaskContext.Provider>

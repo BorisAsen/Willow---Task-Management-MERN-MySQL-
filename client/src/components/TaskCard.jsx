@@ -10,11 +10,18 @@ import { useNavigate } from "react-router-dom";
 // y muestra todas las propiedades del mismo
 export default function TaskCard({ task }) {
 
-    // Extraigo del context la funcion para eliminar una tarea
-    const {deleteTask} = useTasks();
+    // Extraigo del context las funciones para eliminar una tarea y cambiarle el estado
+    const {deleteTask, toggleTaskDone} = useTasks();
 
     // Declaro constante para disponer del useNavigate
     const navigate = useNavigate();
+
+    // Funcion para ver el estado del campo done
+    const handleDone = async () => {
+        // Imprimo por consola el valor del campo done de la tarea para corroborar
+        //console.log(taskDone);
+        await toggleTaskDone(task.id);
+    }
 
     return (
         <div>
@@ -24,6 +31,7 @@ export default function TaskCard({ task }) {
             <span>{task.createAt}</span>
             <button onClick={() => deleteTask(task.id)}>Eliminar</button>
             <button onClick={() => navigate(`/edit/${task.id}`)}>Editar</button>
+            <button onClick={() => handleDone(task.done)}>Completada</button>
         </div>
   )
 }
