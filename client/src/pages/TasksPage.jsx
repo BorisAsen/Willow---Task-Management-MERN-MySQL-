@@ -32,10 +32,11 @@ export default function TasksPage() {
 
   return (
     <div>
-      <h1>Lista de Tareas</h1>
-
-      {/* Se llama a la funcion que renderiza el contenido de la pagina */}
-      {renderMain()}
+      <h1 className='text-2xl text-white font-bold text-center my-4'>Lista de Tareas</h1>
+      <div className='grid grid-cols-3 gap-2'>
+        {/* Se llama a la funcion que renderiza el contenido de la pagina */}
+        {renderMain()}
+      </div>
     </div>
   )
 }

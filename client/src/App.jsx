@@ -15,18 +15,22 @@ import { TaskContextProvider } from "./context/TasksProvider";
 
 export default function App() {
   return (
-      <TaskContextProvider>
-        <NavBar/>
-        <Routes>
-          {/* Ruta de la pag principal */}
-          <Route path='/' element={<TasksPage/>} />
-          {/* Ruta de la pagina para crear tareas */}
-          <Route path='/new' element={<TaskForm/>} />
-          {/* Ruta de la pagina para modificar tareas */}
-          <Route path='/edit/:id' element={<TaskForm/>} />
-          {/* Pagina por defecto que se mostrara cuando se solicite una pagina que no existe */}
-          <Route path='*' element={<NotFound/>} />
-        </Routes>
-      </TaskContextProvider>
+    <div className="bg-zinc-800 h-screen">
+      <NavBar/>
+      <div className='container mx-auto py-4 px-20'>
+        <TaskContextProvider>
+          <Routes>
+            {/* Ruta de la pag principal */}
+            <Route path='/' element={<TasksPage/>} />
+            {/* Ruta de la pagina para crear tareas */}
+            <Route path='/new' element={<TaskForm/>} />
+            {/* Ruta de la pagina para modificar tareas */}
+            <Route path='/edit/:id' element={<TaskForm/>} />
+            {/* Pagina por defecto que se mostrara cuando se solicite una pagina que no existe */}
+            <Route path='*' element={<NotFound/>} />
+          </Routes>
+        </TaskContextProvider>
+      </div>
+    </div>
   )
 }

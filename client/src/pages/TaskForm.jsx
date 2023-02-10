@@ -62,12 +62,7 @@ export default function TaskForm() {
 
 
   return (
-    <div>
-      {/* Crear un titulo condicional para el formulario segun se quiera crear
-      o actualizar una tarea. Si ya existe el id de la tarea el titulo sera Editar
-      de caso contrario sera Crear. */}
-      <h1>{ params.id ? "Editar Tarea" : "Crear Tarea" }</h1>
-
+    <div className='mt-3'>
       <Formik
         // Defino los valores iniciales que tendran los campos
         // Si se quiere editar una tarea se corresponderan con los
@@ -84,12 +79,12 @@ export default function TaskForm() {
           if (params.id) {
             // Llamo a la funcion para modificar una tarea
             await updateTask(params.id, values)
-            // Redireccionar a la pagina principal una vez actualizada la tarea
-            navigate("/");
           } else {
             // Llamo a la funcion para crear una tarea
             await createTask(values);
           }
+          // Redireccionar a la pagina principal una vez actualizada o creada la tarea
+          navigate("/");
           // Limpio el formulario una vez que se crea o modifica una tarea
           setTask({
             title: "",
@@ -102,9 +97,14 @@ export default function TaskForm() {
         que se ejecuta con el evento onChange. Con la propiedad handleSubmit y el evento onSubmit
         se podran observar los datos capturados por el formulario */}
         {({handleChange, handleSubmit, values, isSubmitting}) => (
-          <Form onSubmit={handleSubmit}>
-            <label>Title</label>
-            <input 
+          <Form onSubmit={handleSubmit} className='mx-auto bg-slate-300 max-w-sm rounded-md p-4'>
+            {/* Crear un titulo condicional para el formulario segun se quiera crear
+            o actualizar una tarea. Si ya existe el id de la tarea el titulo sera Editar
+            de caso contrario sera Crear. */}
+            <h1 className='mb-3 font-bold text-xl uppercase text-center'>{ params.id ? "Editar Tarea" : "Crear Tarea" }</h1>
+            <label className='block'>Title</label>
+            <input
+              className='p-1 my-2 rounded-md w-full'
               type="text"
               name="title"
               placeholder='Escribe un titulo'
@@ -112,8 +112,9 @@ export default function TaskForm() {
               value={values.title} // Resetea al valor inicial despues de enviar el form
             />
 
-            <label>Description</label>
+            <label className='block'>Description</label>
             <textarea
+              className='p-1 my-2 rounded-md w-full'
               name="description"
               rows="3"
               placeholder='Escribe una descripcion de la tarea'
@@ -121,7 +122,7 @@ export default function TaskForm() {
               value={values.description} // Resetea al valor inicial despues de enviar el form
             ></textarea>
 
-            <button type='submit' disabled={isSubmitting}>
+            <button className='bg-green-500 rounded-md px-2 py-0.5 text-white' type='submit' disabled={isSubmitting}>
               {isSubmitting ? "Guardando..." : "Guardar"}
             </button>
           </Form>

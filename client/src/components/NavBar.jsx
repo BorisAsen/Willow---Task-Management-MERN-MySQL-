@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <div>
-        <h1>Programa de Gestion Willow</h1>
-
-        <ul>
+    <div className='bg-zinc-700 flex flex-wrap justify-between px-10 py-4'>
+        <Link to="/" className='text-white font-bold text-2xl'>
+          <h1>Willow - Programa de Gestión</h1>
+        </Link>
+        <ul className='flex flex-wrap gap-x-1 m-1'>
             <li>
-                <Link to="/">Inicio</Link>
+                <Link className='bg-slate-200 px-2 py-1 font-bold' to="/">Inicio</Link>
             </li>
             <li>
-                <Link to="/new">Create Tareas</Link>
+                <Link className='bg-slate-200 px-2 py-1 font-bold' to="/new">Crear Tareas</Link>
             </li>
         </ul>
     </div>
