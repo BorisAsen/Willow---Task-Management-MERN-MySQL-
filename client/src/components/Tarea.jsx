@@ -24,7 +24,7 @@ export default function TaskCard({ task }) {
     }
 
     return (
-        <div className='bg-slate-300 rounded-md p-3.5'>
+        <div className='TarjetaTarea'>
             <header className='flex justify-between'>
                 <h2 className='text-xl font-bold'>{task.title}</h2>
                 <span>{task.done == 1 ? "✅" : "❌"}</span>

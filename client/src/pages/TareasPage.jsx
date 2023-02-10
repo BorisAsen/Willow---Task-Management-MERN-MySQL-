@@ -4,13 +4,13 @@ import React from 'react'
 import { useEffect } from "react";
 
 // Importar el componente para mostrar una tarjeta de tarea
-import TaskCard from "../components/TaskCard";
+import Tarea from "../components/Tarea";
 
 // Importo el context de tareas
 import { useTasks } from "../context/TasksProvider";
 
 
-export default function TasksPage() {
+export default function TareasPage() {
   // Extraigo del context el arreglo de tareas vacio y la funcion para cargarlo con las tareas de la db
   const {tasks, loadTasks} = useTasks();
 
@@ -26,14 +26,14 @@ export default function TasksPage() {
     if (tasks.length === 0) {
       return <h1>No hay tareas que mostrar</h1>
     }else{
-      return tasks.map ((task) => <TaskCard task={task} key={task.id}/>)
+      return tasks.map ((task) => <Tarea task={task} key={task.id}/>)
     }
   }
 
   return (
     <div>
-      <h1 className='text-2xl text-white font-bold text-center my-4'>Lista de Tareas</h1>
-      <div className='grid grid-cols-3 gap-2'>
+      <h1 className='PageTitle'>Listado de Tareas</h1>
+      <div className='grid grid-cols-2 gap-3'>
         {/* Se llama a la funcion que renderiza el contenido de la pagina */}
         {renderMain()}
       </div>

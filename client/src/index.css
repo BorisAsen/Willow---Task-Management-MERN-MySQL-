@@ -1,3 +1,48 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Clases */
+@layer components{
+
+    /* NavBar Icons */
+    .NavBar-icon{
+        @apply
+        relative flex items-center justify-center
+        h-10 w-10 mt-2.5 mb-2.5 mx-auto rounded-2xl
+        bg-secondary text-white shadow-icon
+       
+        hover:scale-110
+        hover:rounded-2xl
+        hover:bg-indigo-600
+        hover:shadow-icon2
+
+        transition-all duration-150 ease-linear
+        ;
+    }
+
+    /* NavBar tooltips */
+    .NavBar-tooltip{
+        @apply
+        absolute w-auto p-2 m-2 min-w-max left-11
+        rounded-md shadow-md
+        text-white text-xs bg-blackBase
+        transition-all duration-100 scale-0 origin-left
+        ;
+    }
+
+    /* Titulos de paginas */
+    .PageTitle{
+        @apply
+        text-2xl text-white font-bold text-center mb-5
+        ;
+    }
+
+    /* Tarjeta de Tareas */
+    .TarjetaTarea{
+        @apply
+        bg-slate-200 rounded-md p-3.5
+        drop-shadow-lg
+        ;
+    }
+}
