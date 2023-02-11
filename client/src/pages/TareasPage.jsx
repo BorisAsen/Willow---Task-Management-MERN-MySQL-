@@ -9,6 +9,13 @@ import Tarea from "../components/Tarea";
 // Importo el context de tareas
 import { useTasks } from "../context/TasksProvider";
 
+// Importo el componente del form de alta de tareas
+import TaskForm from "./TaskForm";
+
+// Importo flowbite para trabajar con el modal
+import { Modal } from "flowbite";
+import TareaForm_Modal from "../components/TareaForm_Modal";
+
 
 export default function TareasPage() {
   // Extraigo del context el arreglo de tareas vacio y la funcion para cargarlo con las tareas de la db
@@ -32,11 +39,24 @@ export default function TareasPage() {
 
   return (
     <div>
-      <h1 className='PageTitle'>Listado de Tareas</h1>
-      <div className='grid grid-cols-2 gap-3'>
+      <div className='bg-red-500 flex items-center justify-between mb-4 align-middle'>
+        <h1 className='PageTitle'>Listado de Tareas</h1>
+
+        <button
+          data-modal-target="TaskFormModal" data-modal-toggle="TaskFormModal" type="button"
+          className='bg-indigo-600 rounded-md px-2 h-8 text-xs text-white'>
+          Nueva tarea
+        </button>
+      </div>
+
+      <TareaForm_Modal></TareaForm_Modal>
+      
+      <div className='grid grid-cols-2 gap-4'>
         {/* Se llama a la funcion que renderiza el contenido de la pagina */}
         {renderMain()}
       </div>
+
+
     </div>
   )
 }

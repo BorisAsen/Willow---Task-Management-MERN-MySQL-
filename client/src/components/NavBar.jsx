@@ -20,10 +20,7 @@ const NavBarIcon = ({icon, text = 'tooltip 💡'}) => (
 
 export default function NavBar() {
   return (
-    <div className='bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-prs1'>
-        {/* <Link to="/" className='text-white font-bold text-2xl'>
-          <h1>Willow - Programa de Gestión</h1>
-        </Link> */}
+    <div className='bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-navBar z-40'>
         <ul >
             <li>
                 {/* Tareas */}

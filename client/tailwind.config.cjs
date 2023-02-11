@@ -4,7 +4,9 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./node_modules/flowbite/**/*.js",
   ],
+
   theme: {
     extend: {
 
@@ -20,12 +22,14 @@ module.exports = {
 
       // Sombra personalizada
       boxShadow: {
-        'prs1': '-0.5em 0 2em rgba(0, 0, 0, 0.9)',
+        'navBar': '-0.5em 0 2em rgba(0, 0, 0, 0.9)',
         'icon': '0 0 0.5em rgba(0, 0, 0, 0.3)',
         'icon2': '0 0.2em 0.7em rgba(0, 0, 0, 0.3)'
       }
 
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }
