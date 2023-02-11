@@ -62,7 +62,7 @@ export default function TaskForm() {
 
 
   return (
-    <div className='mt-3'>
+    <div>
       <Formik
         // Defino los valores iniciales que tendran los campos
         // Si se quiere editar una tarea se corresponderan con los

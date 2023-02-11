@@ -14,8 +14,8 @@
        
         hover:scale-110
         hover:rounded-2xl
-        hover:bg-indigo-600
-        hover:shadow-icon2
+        hover:bg-details_2
+        hover:shadow-iconHover
 
         transition-all duration-150 ease-linear
         ;
@@ -34,15 +34,16 @@
     /* Titulos de paginas */
     .PageTitle{
         @apply
-        text-2xl text-white font-bold text-center mb-5
+        text-lg text-white font-bold text-center
+        uppercase
         ;
     }
 
     /* Tarjeta de Tareas */
     .TarjetaTarea{
         @apply
-        bg-slate-200 rounded-md p-3.5
-        drop-shadow-lg
+        bg-slate-200 rounded-md p-3.5 max-w-lg
+        shadow-taskCard
         ;
     }
 }

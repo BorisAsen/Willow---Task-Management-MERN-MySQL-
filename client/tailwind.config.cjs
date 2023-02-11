@@ -15,14 +15,15 @@ module.exports = {
         tertiary: '#4d5052',
         blackBase: '#2b2d2e',
         details_1: '#ffd500',
-        details_2: '#4a2fd4',
+        details_2: '#4f46e5',
       },
 
       // Sombra personalizada
       boxShadow: {
-        'prs1': '-0.5em 0 2em rgba(0, 0, 0, 0.9)',
+        'navBar': '-0.5em 0 2em rgba(0, 0, 0, 0.9)',
         'icon': '0 0 0.5em rgba(0, 0, 0, 0.3)',
-        'icon2': '0 0.2em 0.7em rgba(0, 0, 0, 0.3)'
+        'iconHover': '0 0.2em 0.7em rgba(0, 0, 0, 0.3)',
+        'taskCard': '0 0.3em 0.5em rgba(0, 0, 0, 0.4)',
       }
 
     },

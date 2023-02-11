@@ -4,9 +4,10 @@ import React from 'react'
 import { Link } from "react-router-dom";
 
 // Importo los iconos de React Icons
-import { AiOutlineFileAdd, AiOutlineProfile, AiOutlineFileDone } from 'react-icons/ai';
+import { AiOutlineFileAdd, AiOutlineProfile } from 'react-icons/ai';
 import { GiSchoolBag } from 'react-icons/gi';
 import { VscGraphLine } from 'react-icons/vsc';
+import { TbReportMoney } from 'react-icons/tb';
 
 // Componente para los iconos de la NavBar
 const NavBarIcon = ({icon, text = 'tooltip 💡'}) => (
@@ -20,10 +21,7 @@ const NavBarIcon = ({icon, text = 'tooltip 💡'}) => (
 
 export default function NavBar() {
   return (
-    <div className='bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-prs1'>
-        {/* <Link to="/" className='text-white font-bold text-2xl'>
-          <h1>Willow - Programa de Gestión</h1>
-        </Link> */}
+    <div className='bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-navBar z-50'>
         <ul >
             <li>
                 {/* Tareas */}
@@ -40,7 +38,7 @@ export default function NavBar() {
             <li>
                 {/* Ventas */}
                 <Link to="/ventas">
-                    <NavBarIcon icon={<AiOutlineFileDone size='25'/>} text = 'Historial de Ventas'/>
+                    <NavBarIcon icon={<TbReportMoney size='28'/>} text = 'Historial de Ventas'/>
                 </Link>
             </li>
             <li>
