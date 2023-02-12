@@ -33,6 +33,7 @@ export default function TareasPage() {
   return (
     <div>
       <h1 className='PageTitle'>Listado de Tareas</h1>
+      
       <div className='grid grid-cols-2 gap-3'>
         {/* Se llama a la funcion que renderiza el contenido de la pagina */}
         {renderMain()}
