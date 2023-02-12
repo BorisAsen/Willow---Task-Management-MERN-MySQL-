@@ -20,18 +20,12 @@ const NavBarIcon = ({icon, text = 'tooltip 💡'}) => (
 
 export default function NavBar() {
   return (
-    <div className=' z-50 bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-prs1'>
+    <div className=' z-50 bg-blackBase flex flex-col fixed top-0 left-0 h-screen w-14 m-0 shadow-navBar'>
         <ul >
             <li>
                 {/* Tareas */}
                 <Link to="/">
                     <NavBarIcon icon={<AiOutlineProfile size='25'/>} text = 'Listado de Tareas'/>
-                </Link>
-            </li>
-            <li>
-                {/* Nueva Tarea*/}
-                <Link to="/new">
-                    <NavBarIcon icon={<AiOutlineFileAdd size='25'/>} text = 'Nueva Tarea'/>
                 </Link>
             </li>
             <li>

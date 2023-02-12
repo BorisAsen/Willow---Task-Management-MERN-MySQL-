@@ -34,7 +34,8 @@
     /* Titulos de paginas */
     .PageTitle{
         @apply
-        text-2xl text-white font-bold text-center mb-5
+        text-lg text-white font-bold text-center
+        uppercase
         ;
     }
 
@@ -42,7 +43,7 @@
     .TarjetaTarea{
         @apply
         bg-slate-200 rounded-md p-3.5
-        drop-shadow-lg
+        shadow-container
         ;
     }
 }

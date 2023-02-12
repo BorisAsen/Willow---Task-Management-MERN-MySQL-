@@ -9,6 +9,9 @@ import Tarea from "../components/Tarea";
 // Importo el context de tareas
 import { useTasks } from "../context/TasksProvider";
 
+// Importo el Link para redirigir a los formularios de tareas
+import { Link } from "react-router-dom";
+
 
 export default function TareasPage() {
   // Extraigo del context el arreglo de tareas vacio y la funcion para cargarlo con las tareas de la db
@@ -31,10 +34,15 @@ export default function TareasPage() {
   }
 
   return (
-    <div>
-      <h1 className='PageTitle'>Listado de Tareas</h1>
+    <div >
+      <div className='border-b-4 border-details_2 pb-3 flex items-center justify-between mb-4 align-middle'>
+        <h1 className='PageTitle'>Listado de Tareas</h1>
+        <button className='bg-details_2 rounded-md px-2 h-8 text-xs text-white'>
+          <Link to="/new">Nueva tarea</Link>
+        </button>
+      </div>
       
-      <div className='grid grid-cols-2 gap-3'>
+      <div className='grid grid-cols-2 gap-5'>
         {/* Se llama a la funcion que renderiza el contenido de la pagina */}
         {renderMain()}
       </div>
