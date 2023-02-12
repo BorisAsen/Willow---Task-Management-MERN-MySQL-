@@ -64,6 +64,7 @@ export default function TaskForm() {
   return (
     <div>
       <Formik
+      
         // Defino los valores iniciales que tendran los campos
         // Si se quiere editar una tarea se corresponderan con los
         // valores obtenidos de la db, sino estaran vacios al momento de crear una nueva
@@ -84,7 +85,9 @@ export default function TaskForm() {
             await createTask(values);
           }
           // Redireccionar a la pagina principal una vez actualizada o creada la tarea
-          navigate("/");
+          //navigate("/");
+          // loadTasks();
+          // renderMain();
           // Limpio el formulario una vez que se crea o modifica una tarea
           setTask({
             title: "",

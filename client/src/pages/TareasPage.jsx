@@ -49,8 +49,9 @@ export default function TareasPage() {
           Nueva tarea
         </button>
         
+        {/* Si modalOn es falso, el Modal no se renderizara */}
         {modalOn && < Modal setModalOn={setModalOn} setChoice={setChoice} /> }
-
+        
       </div>
       
       <div className='grid grid-cols-2 gap-4'>
